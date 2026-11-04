@@ -28,7 +28,7 @@ L'activitat consisteix a muntar un laboratori d'una xarxa empresarial utilitzant
 
 - Un clúster amb 3 màquines virtuals.
 - 3 servidors de comunicacions (MikroTik, OPNsense i Debian amb nftables).
-- 2 clients (Windows i Linux).
+- 2 clients (Windows i Debian).
 
 Aquesta activitat requereix executar diverses màquines virtuals simultàniament, per la qual cosa els recursos més importants són el processador, la memòria RAM i l'emmagatzematge.
 
@@ -64,7 +64,7 @@ Aquesta activitat requereix executar diverses màquines virtuals simultàniament
 
 ## 5. Conclusió
 
-Per a realitzar aquest laboratori, l'equip de classe és clarament la millor opció, ja que disposa de 32 GB de RAM i un processador més modern, cosa que facilita l'execució simultània de les màquines virtuals.
+Per a realitzar aquest laboratori, l'equip de classe no constaria cap problema, ja que disposa de 32 GB de RAM i un processador més modern, cosa que facilita l'execució simultània de les màquines virtuals.
 
 L'equip de casa presenta una limitació important de memòria RAM, ja que els 8 GB no són suficients per executar totes les màquines virtuals del laboratori amb comoditat. La millora més necessària seria ampliar la RAM a 32 GB, sempre que el maquinari ho permeta.
 
