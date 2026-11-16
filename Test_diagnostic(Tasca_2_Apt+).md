@@ -80,10 +80,8 @@ Aquesta ordre permet identificar els discos interns i externs, la capacitat i el
 **Comprovació de l'estat SMART:**
 
 ```bash
-sudo smartctl -a /dev/sdX
+sudo smartctl -a /dev/sda
 ```
-
-Cal substituir `/dev/sdX` pel dispositiu corresponent. En el cas d'un disc NVMe, es pot utilitzar `/dev/nvme0n1`.
 
 **Prova de velocitat:**
 
