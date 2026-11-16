@@ -7,7 +7,7 @@ L'objectiu d'aquesta activitat és realitzar proves de diagnòstic en els ordina
 
 Es comprovarà el rendiment de la memòria RAM, l'estat i la velocitat dels discos SSD i la connectivitat de xarxa.
 
-Finalment, es compararan els resultats per a identificar possibles colls de botella.
+Finalment, es compararan els resultats per a identificar possibles colls de botella i determinar si les limitacions detectades inicialment es confirmen.
 
 ## 2. Característiques dels equips
 
@@ -15,8 +15,8 @@ Finalment, es compararan els resultats per a identificar possibles colls de bote
 
 - Processador: Intel Core Ultra 5 125H.
 - Memòria RAM: 32 GB.
-- Emmagatzematge intern: SSD d'1 TB.
-- Emmagatzematge extern: SSD d'1 TB.
+- Emmagatzematge intern: SSD NVMe d'1 TB.
+- Emmagatzematge extern: SSD d'1 TB amb Linux Mint instal·lat.
 
 ### Equip de casa
 
@@ -24,7 +24,10 @@ Finalment, es compararan els resultats per a identificar possibles colls de bote
 - Memòria RAM: 8 GB.
 - Targeta gràfica: NVIDIA GeForce GT 710.
 - Emmagatzematge intern: SSD d'1 TB.
-- Emmagatzematge extern: SSD d'1 TB (el mateix dispositiu utilitzat en l'equip de classe).
+- Emmagatzematge extern: el mateix SSD d'1 TB utilitzat en l'equip de classe, amb Linux Mint instal·lat.
+
+**Important:** Linux Mint s'executa des del SSD extern en tots dos equips. Per tant, el sistema operatiu i el dispositiu d'emmagatzematge extern són els mateixos, fet que permet comparar el comportament dels dos ordinadors en condicions semblants.
+
 ## 3. Proves de diagnòstic
 
 ### 3.1. Diagnòstic de memòria RAM
@@ -53,9 +56,9 @@ La primera ordre mostra la memòria total, utilitzada i disponible. La segona pe
 | RAM disponible | 25,1 GiB | 4,5 GiB |
 | Ús aproximat | 17 % | 37 % |
 
-### 3.2. Diagnòstic del disc SSD
+### 3.2. Diagnòstic dels discos
 
-**Objectiu:** comprovar l'estat del disc i mesurar la velocitat de lectura i escriptura.
+**Objectiu:** comprovar l'estat dels discos i mesurar les velocitats de lectura i escriptura.
 
 **Eines:** `smartmontools` i `fio`.
 
@@ -66,37 +69,55 @@ sudo apt update
 sudo apt install smartmontools fio
 ```
 
-**Comprovació de l'estat del disc:**
+**Identificació dels discos:**
 
 ```bash
-lsblk -o NAME,SIZE,TYPE,MODEL
-sudo smartctl -a /dev/sda
+lsblk -o NAME,SIZE,MODEL,TRAN,ROTA
 ```
 
-La primera ordre identifica els discos connectats. La segona consulta les dades SMART, la temperatura i l'estat del dispositiu. Si el disc és NVMe, cal substituir `/dev/sda` pel dispositiu corresponent, per exemple `/dev/nvme0n1`.
+Aquesta ordre permet identificar els discos interns i externs, la capacitat i el tipus de connexió.
+
+**Comprovació de l'estat SMART:**
+
+```bash
+sudo smartctl -a /dev/sdX
+```
+
+Cal substituir `/dev/sdX` pel dispositiu corresponent. En el cas d'un disc NVMe, es pot utilitzar `/dev/nvme0n1`.
 
 **Prova de velocitat:**
 
 ```bash
-fio --name=test --filename=testfile --size=1G --bs=1M --rw=readwrite --direct=1 --iodepth=16 --runtime=30 --time_based --group_reporting
+fio --name=test \
+--filename=testfile \
+--size=1G \
+--bs=1M \
+--rw=readwrite \
+--direct=1 \
+--iodepth=16 \
+--runtime=30 \
+--time_based \
+--group_reporting
 ```
 
-Mesura el rendiment de lectura i escriptura del disc.
+Mesura el rendiment de lectura i escriptura del disc seleccionat.
 
-**Condicions:** realitzar la prova amb el disc sense altres operacions importants i eliminar el fitxer temporal després de la prova.
+**Condicions:** realitzar les proves per separat en cada disc, sense altres operacions importants d'emmagatzematge.
 
-```bash
-rm -f testfile
-```
+En el cas de l'SSD extern, s'utilitzarà el mateix dispositiu en tots dos ordinadors per a comparar el rendiment de la connexió USB.
 
 **Resultats orientatius:**
 
 | Mesura | Equip de classe | Equip de casa |
 |---|---:|---:|
-| Lectura seqüencial | 3.200 MB/s | 520 MB/s |
-| Escriptura seqüencial | 2.400 MB/s | 450 MB/s |
-| Temperatura | 38 °C | 35 °C |
+| SSD intern | NVMe | SSD |
+| Capacitat interna | 1 TB | 1 TB |
+| SSD extern | 1 TB | 1 TB |
+| Lectura SSD extern | 450 MB/s | 350 MB/s |
+| Escriptura SSD extern | 400 MB/s | 320 MB/s |
 | Estat SMART | Correcte | Correcte |
+
+*Les velocitats de l'SSD extern són exemples orientatius, no mesures reals. Encara que siga el mateix dispositiu, la connexió USB i els controladors poden influir en el resultat.*
 
 ### 3.3. Diagnòstic de xarxa
 
@@ -129,51 +150,45 @@ La primera ordre mostra les interfícies i les adreces IP configurades. Les altr
 
 ## 4. Comparació dels resultats
 
-Després de realitzar les proves, es poden comparar les característiques i el rendiment dels dos equips.
+Les proves permeten comparar els dos equips tenint en compte que utilitzen el mateix SSD extern i el mateix sistema operatiu.
 
 | Component | Equip de classe | Equip de casa |
-|---|---:|---:|
-| RAM total | 32 GB | 8 GB |
-| RAM utilitzada | 5,2 GiB | 2,8 GiB |
-| RAM disponible | 25,1 GiB | 4,5 GiB |
-| Lectura SSD | 3.200 MB/s | 520 MB/s |
-| Escriptura SSD | 2.400 MB/s | 450 MB/s |
-| Temperatura SSD | 38 °C | 35 °C |
+|---|---|---|
+| Processador | Intel Core Ultra 5 125H | Intel Core i5-9400F |
+| RAM | 32 GB | 8 GB |
+| SSD intern | 1 TB NVMe | 1 TB SSD |
+| SSD extern | 1 TB | 1 TB (mateix dispositiu) |
+| Sistema operatiu | Linux Mint | Linux Mint |
+| Lectura SSD extern | 450 MB/s | 350 MB/s |
+| Escriptura SSD extern | 400 MB/s | 320 MB/s |
 | Latència mitjana | 16 ms | 19 ms |
-| Pèrdua de paquets | 0 % | 0 % |
 
 ## 5. Identificació dels colls de botella
 
 ### Equip de classe
 
-L'equip disposa de 32 GB de RAM i un SSD amb velocitats elevades de lectura i escriptura.
+Disposa de 32 GB de RAM i un SSD intern NVMe d'1 TB. Aquestes característiques permeten treballar amb diverses aplicacions i màquines virtuals simultàniament.
 
-El consum de memòria és aproximadament del 17 %, per la qual cosa encara disposa de molts recursos lliures.
-
-La xarxa presenta una latència mitjana de 16 ms i no hi ha pèrdua de paquets.
-
-Per tant, no s'identifiquen colls de botella importants en les proves realitzades.
+El sistema operatiu s'executa des de l'SSD extern, per la qual cosa el rendiment també depén de la connexió USB.
 
 ### Equip de casa
 
-L'equip disposa de 8 GB de RAM, dels quals s'utilitzen aproximadament 2,8 GiB en repòs.
+Disposa de 8 GB de RAM i un SSD intern d'1 TB. La memòria RAM pot representar una limitació quan s'executen diverses màquines virtuals simultàniament.
 
-Encara que el consum inicial no és elevat, la quantitat total de memòria pot limitar l'execució simultània de diverses màquines virtuals.
+No obstant això, el rendiment del processador i del SSD s'ha de valorar a partir de les proves, sense considerar que l'equip siga inferior en tots els aspectes.
 
-El SSD presenta velocitats inferiors a les de l'equip de classe, però continua oferint un rendiment suficient per a tasques habituals.
+### Comparació de l'emmagatzematge extern
 
-La connexió de xarxa també presenta resultats correctes, amb una latència mitjana de 19 ms i cap paquet perdut.
+Com que s'utilitza el mateix SSD extern amb Linux Mint en els dos ordinadors, les diferències de velocitat poden estar relacionades amb els ports USB, els controladors o altres característiques de cada equip.
 
-Per tant, la principal limitació identificada és la quantitat de memòria RAM, especialment per a treballar amb virtualització.
+Per tant, és important comparar les velocitats mesurades abans d'identificar un possible coll de botella.
 
 ## 6. Conclusió
 
-Les proves permeten comparar el rendiment dels dos equips i identificar les seues principals limitacions.
+Les proves permeten analitzar el rendiment dels dos equips en condicions semblants, utilitzant el mateix sistema operatiu i el mateix dispositiu d'emmagatzematge extern.
 
-L'equip de classe presenta millors característiques generals, especialment en memòria RAM i velocitat d'emmagatzematge, fet que el fa més adequat per a executar diverses màquines virtuals.
+La principal diferència de maquinari és la memòria RAM, amb 32 GB en l'equip de classe i 8 GB en el de casa. Això pot influir especialment en l'execució simultània de màquines virtuals.
 
-En canvi, l'equip de casa presenta una limitació important de memòria RAM, ja que només disposa de 8 GB. Això pot provocar problemes de rendiment quan s'executen diversos sistemes virtualitzats simultàniament.
+També s'ha de tindre en compte que l'equip de classe disposa d'un SSD intern NVMe, mentre que el de casa utilitza un SSD intern diferent.
 
-Les proves de xarxa no mostren problemes significatius en cap dels dos equips.
-
-En conclusió, es confirma que l'equip de casa té més limitacions per a treballar amb virtualització, mentre que l'equip de classe ofereix unes condicions més favorables.
+En conclusió, no es pot determinar que un equip siga millor en tots els aspectes sense analitzar els resultats de cada prova per separat.
