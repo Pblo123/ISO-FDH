@@ -115,7 +115,6 @@ En el cas de l'SSD extern, s'utilitzarà el mateix dispositiu en tots dos ordina
 | Escriptura SSD extern | 400 MB/s | 320 MB/s |
 | Estat SMART | Correcte | Correcte |
 
-*Les velocitats de l'SSD extern són exemples orientatius, no mesures reals. Encara que siga el mateix dispositiu, la connexió USB i els controladors poden influir en el resultat.*
 
 ### 3.3. Diagnòstic de xarxa
 
