@@ -47,7 +47,7 @@ La primera ordre mostra la memòria total, utilitzada i disponible. La segona pe
 
 **Condicions:** executar les ordres amb el sistema iniciat i sense aplicacions exigents obertes.
 
-**Resultats orientatius:**
+**Resultats Obtinguts:**
 
 | Mesura | Equip de classe | Equip de casa |
 |---|---:|---:|
@@ -104,7 +104,7 @@ Mesura el rendiment de lectura i escriptura del disc seleccionat.
 
 En el cas de l'SSD extern, s'utilitzarà el mateix dispositiu en tots dos ordinadors per a comparar el rendiment de la connexió USB.
 
-**Resultats orientatius:**
+**Resultats obtinguts:**
 
 | Mesura | Equip de classe | Equip de casa |
 |---|---:|---:|
@@ -135,7 +135,7 @@ La primera ordre mostra les interfícies i les adreces IP configurades. Les altr
 
 **Condicions:** realitzar les proves amb una connexió estable i sense descàrregues actives.
 
-**Resultats orientatius:**
+**Resultats obtinguts:**
 
 | Mesura | Equip de classe | Equip de casa |
 |---|---:|---:|
@@ -173,7 +173,6 @@ El sistema operatiu s'executa des de l'SSD extern, per la qual cosa el rendiment
 
 Disposa de 8 GB de RAM i un SSD intern d'1 TB. La memòria RAM pot representar una limitació quan s'executen diverses màquines virtuals simultàniament.
 
-No obstant això, el rendiment del processador i del SSD s'ha de valorar a partir de les proves, sense considerar que l'equip siga inferior en tots els aspectes.
 
 ### Comparació de l'emmagatzematge extern
 
