@@ -43,12 +43,10 @@ La xarxa interna utilitzarà el direccionament següent:
 | MikroTik (LAN) | 192.168.12.2 |
 | OPNsense (LAN) | 192.168.12.1 |
 | Debian NFTABLES (LAN) | 192.168.12.3 |
-| Client Windows | 192.168.12.10 |
-| Client Linux | 192.168.12.11 |
-| TrueNAS | 192.168.12.20 |
-| Windows Server | 192.168.12.30 |
-| Linux de serveis | 192.168.12.31 |
-| Servidor de bases de dades | 192.168.12.32 |
+| Client Windows | 192.168.12.30 |
+| Client Linux | 192.168.12.5 |
+| TrueNAS | 192.168.12.10 |
+| Windows Server | 192.168.12.20 |
 
 Les interfícies exteriors dels servidors de comunicació obtindran la seua adreça IP automàticament mitjançant DHCP de la xarxa de l'aula.
 
