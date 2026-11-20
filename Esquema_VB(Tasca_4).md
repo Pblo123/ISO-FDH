@@ -48,7 +48,6 @@ La xarxa interna utilitzarà el direccionament següent:
 | TrueNAS | 192.168.12.20 |
 | Windows Server | 192.168.12.30 |
 | Linux de serveis | 192.168.12.31 |
-| Servidor de bases de dades | 192.168.12.32 |
 
 Les interfícies exteriors dels servidors de comunicació obtindran la seua adreça IP automàticament mitjançant DHCP de la xarxa de l'aula.
 
