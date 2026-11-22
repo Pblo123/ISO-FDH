@@ -92,5 +92,3 @@ Els tres servidors de comunicació es provaran individualment per a comparar-ne 
 ## 8. Conclusió
 
 La infraestructura virtualitzada mitjançant VirtualBox permet simular una xarxa completa utilitzant diferents sistemes operatius i solucions de comunicació.
-
-Aquest entorn facilita l'aprenentatge de l'administració de sistemes, la seguretat informàtica, l'emmagatzematge i els serveis de xarxa sense necessitat de disposar de maquinari addicional.
