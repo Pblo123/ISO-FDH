@@ -47,6 +47,9 @@ La xarxa interna utilitzarà el direccionament següent:
 | Client Linux | 192.168.12.5 |
 | TrueNAS | 192.168.12.10 |
 | Windows Server | 192.168.12.20 |
+| Proxmox1 | 192.168.12.150 |
+| Proxmox2 | 192.168.12.151 |
+| Proxmox3 | 192.168.12.152 |
 
 Les interfícies exteriors dels servidors de comunicació obtindran la seua adreça IP automàticament mitjançant DHCP de la xarxa de l'aula.
 
