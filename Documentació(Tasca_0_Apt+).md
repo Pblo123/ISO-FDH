@@ -73,8 +73,6 @@ S'utilitzarà TrueNAS SCALE com a sistema d'emmagatzematge.
 Es crearan tres màquines virtuals connectades a `LAN-INTERNA`:
 
 - **Windows Server:** instal·lació del sistema i configuració de serveis d'administració, com ara Active Directory.
-- **Linux de serveis:** instal·lació de Debian o Ubuntu Server per a allotjar serveis com DNS, DHCP o un servidor web.
-- **Servidor de bases de dades:** instal·lació de Linux i d'un gestor de bases de dades com MariaDB o PostgreSQL.
 
 ## 7. Configuració i proves
 
