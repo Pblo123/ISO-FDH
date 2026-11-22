@@ -66,7 +66,7 @@ S'utilitzarà TrueNAS SCALE com a sistema d'emmagatzematge.
 2. Crear una màquina virtual i assignar memòria RAM i CPU.
 3. Afegir un disc per al sistema i un altre per a les dades.
 4. Configurar l'adaptador connectat a `LAN-INTERNA`.
-5. Instal·lar TrueNAS i configurar l'emmagatzematge compartit mitjançant SMB o NFS.
+5. Instal·lar TrueNAS.
 
 ## 6. Instal·lació del clúster de virtualització
 
@@ -75,6 +75,7 @@ Es crearan tres màquines virtuals connectades a `LAN-INTERNA`:
 - **Windows Server:** instal·lació del sistema i configuració de serveis d'administració, com ara Active Directory.
 - **Linux de serveis:** instal·lació de Debian o Ubuntu Server per a allotjar serveis com DNS, DHCP o un servidor web.
 - **Servidor de bases de dades:** instal·lació de Linux i d'un gestor de bases de dades com MariaDB o PostgreSQL.
+  `Les maquines estarán instalades independentment del cluster per a millorar el rendiment`
 
 ## 7. Configuració i proves
 
@@ -87,7 +88,6 @@ Es realitzaran les proves següents:
 - Comprovació de les regles del tallafoc.
 - Accés a l'emmagatzematge compartit del NAS.
 - Funcionament dels serveis de xarxa.
-- Connexió amb el servidor de bases de dades.
 
 Els tres servidors de comunicació es provaran individualment per a comparar-ne les funcionalitats i evitar conflictes d'encaminament.
 
@@ -95,4 +95,3 @@ Els tres servidors de comunicació es provaran individualment per a comparar-ne 
 
 La infraestructura virtualitzada mitjançant VirtualBox permet simular una xarxa completa utilitzant diferents sistemes operatius i solucions de comunicació.
 
-Aquest entorn facilita l'aprenentatge de l'administració de sistemes, la seguretat informàtica, l'emmagatzematge i els serveis de xarxa sense necessitat de disposar de maquinari addicional.
